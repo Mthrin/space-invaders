@@ -6,7 +6,9 @@ import BasicProjectile from "./BasicProjectile";
 const SpaceInvader = function () {
   /////---Ship control---/////
 
-  const [x, setX] = React.useState(650);
+  const [shipX, setShipX] = React.useState(650);
+  const shipY = 780; //Yes
+
   let speed = 0;
   const moveShip = function (e) {
     if (e.key === "a") speed = -8;
@@ -69,6 +71,15 @@ const SpaceInvader = function () {
     });
   };
 
+  const checkHit = function (proj) {
+    if (Math.abs(proj.y - shipY) <= 15) {
+      if (Math.abs(proj.x - shipX) <= 15) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   /////---Game Loop---/////
   const [game, setGame] = React.useState(false);
 
@@ -79,7 +90,7 @@ const SpaceInvader = function () {
       document.addEventListener("keydown", moveShip);
       document.addEventListener("keyup", stopShip);
       const tick = setInterval(function () {
-        setX((old) =>
+        setShipX((old) =>
           old + speed >= 1250 || old + speed <= 50 ? old : old + speed
         );
         alienMovement();
@@ -97,12 +108,21 @@ const SpaceInvader = function () {
     if (Math.random() > 0.9) circleAttack();
   }, [alienX]);
 
+  React.useEffect(() => {
+    setAllProjectiles((old) =>
+      old.map((proj) => ({
+        ...proj,
+        type: checkHit(proj) ? "hit" : "basic",
+      }))
+    );
+  }, [shipX, allProjectiles]);
+
   return (
     <section className="space-invader-section">
       <h2 className="space-invader-header">space invaders</h2>
       <div className="space-invader-main" onClick={circleAttack}>
         <Alien x={alienX} />
-        <Spaceship x={x} />
+        <Spaceship x={shipX} />
         {allProjectiles.map(renderProjectile)}
         {game || (
           <button className="start-btn" onClick={startGame}>

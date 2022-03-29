@@ -4,11 +4,9 @@ import "./spaceInvader.css";
 
 const App = function () {
   return (
-    <div>
-      <main>
-        <SpaceInvader />
-      </main>
-    </div>
+    <main>
+      <SpaceInvader />
+    </main>
   );
 };
 
