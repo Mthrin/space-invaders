@@ -210,3 +210,21 @@ html {
   height: 100%;
   background-color: var(--main-color);
 }
+
+.score-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 25rem;
+  height: 5rem;
+  top: 1rem;
+  right: 1rem;
+  border: solid 3px var(--main-color);
+}
+
+.score {
+  color: var(--main-color);
+  font-size: 3.2rem;
+  font-weight: 700;
+}
