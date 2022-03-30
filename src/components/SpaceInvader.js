@@ -66,6 +66,9 @@ const SpaceInvader = function () {
               y: proj.y + speed * Math.sin((proj.angle / 180) * Math.PI),
             });
           }
+          if (proj.type === "hit") {
+            setHealth((old) => old - 1);
+          }
         }
       });
       return newArr;
