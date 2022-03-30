@@ -2,6 +2,7 @@ import React from "react";
 import { Spaceship } from "./Spaceship";
 import { Alien } from "./Alien";
 import BasicProjectile from "./BasicProjectile";
+import HealthBar from "./HealthBar";
 
 const SpaceInvader = function () {
   /////---Ship control---/////
@@ -79,6 +80,9 @@ const SpaceInvader = function () {
     }
     return false;
   };
+  /////---Time and health count---/////
+  const [time, setTime] = React.useState(0);
+  const [health, setHealth] = React.useState(50);
 
   /////---Game Loop---/////
   const [game, setGame] = React.useState(false);
@@ -121,6 +125,7 @@ const SpaceInvader = function () {
     <section className="space-invader-section">
       <h2 className="space-invader-header">space invaders</h2>
       <div className="space-invader-main" onClick={circleAttack}>
+        <HealthBar hp={health} />
         <Alien x={alienX} />
         <Spaceship x={shipX} />
         {allProjectiles.map(renderProjectile)}
