@@ -39,10 +39,10 @@ const SpaceInvader = function () {
   const [allProjectiles, setAllProjectiles] = React.useState([]);
 
   const circleAttack = function () {
-    const atk = new Array(72).fill("").map((el, i) => ({
+    const atk = new Array(40).fill("").map((el, i) => ({
       x: alienX,
       y: 100,
-      angle: i * 5,
+      angle: i * 9,
       type: "basic",
     }));
 
@@ -148,6 +148,9 @@ const SpaceInvader = function () {
         <Alien x={alienX} />
         <Spaceship x={shipX} />
         {allProjectiles.map(renderProjectile)}
+        {time - startTime > 0 && !game && (
+          <span className="final-score">Score: {time - startTime}</span>
+        )}
         {game || (
           <button className="start-btn" onClick={startGame}>
             Start

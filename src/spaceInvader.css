@@ -37,7 +37,7 @@ html {
 
 .start-btn {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 35rem;
@@ -227,4 +227,16 @@ html {
   color: var(--main-color);
   font-size: 3.2rem;
   font-weight: 700;
+}
+
+.final-score {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--main-color);
+  font-size: 3.2rem;
+  font-weight: 700;
+  text-shadow: 0 0 5px #00c3ff;
+  background-color: #000;
 }
